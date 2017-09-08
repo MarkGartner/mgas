@@ -23,3 +23,7 @@ hs_err_pid*
 
 # do not look into these folders
 Target
+
+# idea files
+.idea
+*.iml
