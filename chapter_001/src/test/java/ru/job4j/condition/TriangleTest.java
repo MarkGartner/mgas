@@ -8,7 +8,6 @@ import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.assertThat;
 
 public class TriangleTest {
-}
 
     @Test
     public void whenAreaSetThreePointsThenTriangleArea() {
@@ -25,3 +24,6 @@ public class TriangleTest {
         //Проверяем результат и ожидаемое значение.
         assertThat(result, closeTo(expected, 0.1));
     }
+}
+
+

@@ -13,21 +13,16 @@ public class Triangle {
         this.c = c;
     }
 
-    public boolean exists()
-    {
-        if (a.getX() + b.getX() )
-    }
-
     public double distance(Point left, Point right)
     {
         return Math.sqrt(Math.pow(left.getX() - right.getX(), 2) + Math.pow(left.getY() - right.getY(), 2));
     }
 
-    public double getArea(Triangle abc)
+    public double getArea()
     {
-        double ab = distance(abc.a, abc.b);
-        double bc = distance(abc.b, abc.c);
-        double ac = distance(abc.a, abc.c);
+        double ab = distance(a, b);
+        double bc = distance(b, c);
+        double ac = distance(a, c);
 
         if ((ab + bc > ac) && (ab + ac > bc) && (ac + bc > ab))
         {
