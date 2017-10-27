@@ -12,7 +12,7 @@ public class ArrayDuplicateTest {
 
         String[] myArray = {"red", "blue", "blue", "green", "red", "red", "purple", "orange", "yellow", "red"};
         ArrayDuplicate sample = new ArrayDuplicate();
-        String [] resultArray = sample.remove(myArray);
+        String[] resultArray = sample.remove(myArray);
 
         String[] expectArray = {"red", "blue", "orange", "green", "purple", "yellow"};
 

@@ -13,7 +13,7 @@ public class TurnTest {
         int[] myArray = {1, 2, 3, 4, 5, 6};
         Turn turn = new Turn();
         int[] result = turn.reverse(myArray);
-        int[] expected = {6, 5,4,3,2,1};
+        int[] expected = {6, 5, 4, 3, 2, 1};
         assertThat(result, is(expected));
     }
 
@@ -24,7 +24,7 @@ public class TurnTest {
         int[] myArray = {1, 2, 3, 4, 5};
         Turn turn = new Turn();
         int[] result = turn.reverse(myArray);
-        int[] expected = {5,4,3,2,1};
+        int[] expected = {5, 4, 3, 2, 1};
         assertThat(result, is(expected));
     }
 }

@@ -7,8 +7,7 @@ import static org.junit.Assert.assertThat;
 
 public class CounterTest {
     @Test
-    public void whenSumEvenNumbersFromOneToTenThenThirty()
-    {
+    public void whenSumEvenNumbersFromOneToTenThenThirty() {
         Counter countObj = new Counter();
         int result = countObj.add(1, 10);
         assertThat(result, is(30));
