@@ -64,8 +64,7 @@ public class StartUI {
                 Item result = this.tracker.findByName(name);
                 displayItemInfo(result);
             } else if (EDIT.equals(answer)) {
-                String id = this.input.ask("Введите ID заявки, которую хотите изменить: ");
-                Item result = this.tracker.editItemByID(id);
+                Item result = this.tracker.editItemByID();
                 displayItemInfo(result);
             } else if (DELETE.equals(answer)) {
                 String id = this.input.ask("Введите ID заявки, которую хотите удалить: ");
@@ -81,7 +80,7 @@ public class StartUI {
      * Метод реализует добавленяи новый заявки в хранилище.
      */
     private void createItem() {
-        System.out.println("------------ Добавление новой языки --------------");
+        System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки :");
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc);

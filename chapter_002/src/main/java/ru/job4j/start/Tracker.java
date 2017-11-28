@@ -28,7 +28,8 @@ public class Tracker {
         return result;
     }
 
-    protected Item editItemByID(String id) {
+    protected Item editItemByID() {
+        String id = "f";
         Item result = this.findByID(id);
         Input input = new ConsoleInput();
         String userAction = input.ask("Вбейте N для изменения имени заявки или D для изменения описания.").toUpperCase();
