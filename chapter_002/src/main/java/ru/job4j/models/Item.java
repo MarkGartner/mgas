@@ -48,4 +48,6 @@ public class Item {
         this.description = description;
         System.out.println("Заявка" + getId() + "переименована в " + name + "c описанием " + description + ".");
     }
+
+
 }

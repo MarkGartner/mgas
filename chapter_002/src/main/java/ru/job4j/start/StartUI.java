@@ -1,6 +1,6 @@
 package ru.job4j.start;
 
-import ru.job4j.models.Item;
+import ru.job4j.models.*;
 
 /**
  * @version $Id$
@@ -46,34 +46,14 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню : ");
-            if (ADD.equals(answer)) {
-                //добавление заявки вынесено в отдельный метод.
-                this.createItem();
-            } else if (SHOWALL.equals(answer)) {
-                this.showAllItems(this.tracker.getAll());
-            } else if (FINDID.equals(answer)) {
-                String id = this.input.ask("Введите ID заявки: ");
-                Item result = this.tracker.findByID(id);
-                displayItemInfo(result);
-            } else if (FINDNAME.equals(answer)) {
-                String name = this.input.ask("Введите имя запрашиваемой заявки: ");
-                Item result = this.tracker.findByName(name);
-                displayItemInfo(result);
-            } else if (EDIT.equals(answer)) {
-                Item result = this.tracker.editItemByID();
-                displayItemInfo(result);
-            } else if (DELETE.equals(answer)) {
-                String id = this.input.ask("Введите ID заявки, которую хотите удалить: ");
-                this.tracker.deleteItem(id);
-
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            }
-        }
+        Tracker tracker = new Tracker();
+        MenuTracker menu = new MenuTracker(this.input, tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            int key = Integer.valueOf(input.ask("Select: "));
+            menu.select(key);
+        } while (!"y".equals(this.input.ask("Exit? y")));
     }
 
     /**
@@ -94,30 +74,6 @@ public class StartUI {
         System.out.println("0. Add new Item\n" + "1. Show all items\n" + "2. Edit item\n" + "3. Delete item\n" + "4. Find item by Id\n" + "5. Find items by name\n" + "6. Exit Program\n");
     }
 
-    private void showAllItems(Item[] items) {
-        System.out.println("--------------------------------------------");
-        for (Item item : items) {
-            System.out.println(item.name + ": " + item.description);
-        }
-        if (items.length == 0) {
-            System.out.println("-----------В трекере нет заявок.------------");
-        }
-        System.out.println("--------------------------------------------");
-
-    }
-
-
-    private void displayItemInfo(Item item) {
-        if (item != null) {
-            System.out.println("--------------------------------------------");
-            System.out.println("Данные заявки: " + item.name + " " + item.description);
-            System.out.println("--------------------------------------------");
-        } else {
-            System.out.println("--------------------------------------------");
-            System.out.println("По данному запросу ничего не найдено.");
-            System.out.println("--------------------------------------------");
-        }
-    }
 
 
     /**
@@ -126,8 +82,10 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+
+        new StartUI(new ConsoleInput(), new Tracker())
+
+       .init();
+
     }
-
-
 }

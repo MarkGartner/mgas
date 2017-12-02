@@ -17,6 +17,15 @@ public class Tracker {
         return item;
     }
 
+    protected void showAllItems(Item[] items) {
+        for (Item item : items) {
+            this.displayItemInfo(item);
+        }
+        if (items.length == 0) {
+            System.out.println("-----------В трекере нет заявок.------------");
+        }
+    }
+
     protected Item findByID(String id) {
         Item result = null;
         for (Item item : this.items) {
@@ -28,21 +37,17 @@ public class Tracker {
         return result;
     }
 
-    protected Item editItemByID() {
-        String id = "f";
+    protected Item editItemByID(String id) {
         Item result = this.findByID(id);
         Input input = new ConsoleInput();
-        String userAction = input.ask("Вбейте N для изменения имени заявки или D для изменения описания.").toUpperCase();
-        if (userAction.equals("N") && result != null) {
+        if (result != null) {
             String name = input.ask("Введите новое имя для заявки: ");
             result.name = name;
-        } else if (userAction.equals("D") && result != null) {
             String desc = input.ask("Введите новое описание для заявки: ");
             result.description = desc;
+            System.out.println("Данные успешно обновлены.");
         } else if (result == null) {
             System.out.println("---------- Такой заявки не найдено ------------- ");
-        } else {
-            System.out.println("---------- Неверный выбор, возвращаю в меню ---------- ");
         }
         return result;
     }
@@ -60,8 +65,9 @@ public class Tracker {
     }
     
     protected void deleteItem(String id) {
+
         Item itemToDelete = findByID(id);
-        
+
         if (itemToDelete != null) {
             int toDeleteItemIndex = 0;
             for (int i = 0; i < this.position; i++) {
@@ -93,5 +99,18 @@ public class Tracker {
             result[index] = this.items[index];
         }
         return result;
+    }
+
+    public void displayItemInfo(Item item) {
+
+        if (item != null) {
+            System.out.println("--------------------------------------------");
+            System.out.println("Имя заявки: " + item.name + "\nОписание: " + item.description + "\nID:" + item.getId());
+            System.out.println("--------------------------------------------");
+        } else {
+            System.out.println("--------------------------------------------");
+            System.out.println("По данному запросу ничего не найдено.");
+            System.out.println("--------------------------------------------");
+        }
     }
 }
