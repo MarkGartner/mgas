@@ -45,13 +45,15 @@ public class StartUI {
     /**
      * Основой цикл программы.
      */
+    private int[] range = new int[] {0, 1,2,3,4,5};
+
     public void init() {
         Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker);
         menu.fillActions();
         do {
             menu.show();
-            int key = Integer.valueOf(input.ask("Select: "));
+            int key = Integer.valueOf(input.ask("Select: ", range));
             menu.select(key);
         } while (!"y".equals(this.input.ask("Exit? y")));
     }
@@ -83,7 +85,7 @@ public class StartUI {
      */
     public static void main(String[] args) {
 
-        new StartUI(new ConsoleInput(), new Tracker())
+        new StartUI(new ValidateInput(), new Tracker())
 
        .init();
 
