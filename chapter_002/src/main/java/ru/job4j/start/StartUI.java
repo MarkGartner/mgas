@@ -51,6 +51,17 @@ public class StartUI {
         Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker);
         menu.fillActions();
+        // Anonymous class creation
+        UserAction deleteAction = new BaseAction("Delete (anonymous class action) - no implementation, just demonstration", 6) {
+            public int key() {
+                return this.key;
+            }
+
+            public void execute(Input input, Tracker tracker) {
+
+            }
+        };
+        menu.addAction(deleteAction);
         do {
             menu.show();
             int key = Integer.valueOf(input.ask("Select: ", range));
